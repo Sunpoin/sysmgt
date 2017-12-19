@@ -5,7 +5,7 @@
 <template>
     <div class="layout" >
         <Row class="layout-menu-panel" :style="{'height':'100vh','display':layout.menuPanelDisplay}">
-          <cp-menu :menu="menu"></cp-menu>
+          <cp-menu :src="menusrc"></cp-menu>
         </Row>
         <Row  type="flex" class="layout-header-panel" :style="{'height':layout.headerPanelHeight,'padding-left':layout.mainPanelPaddingLeft}">
           <cp-header :header="header" :toggle="toggleClick"></cp-header>
@@ -46,11 +46,7 @@ export default {
           { title: "模块定义", link: "#" }
         ]
       },
-      menu: {
-        Logo: "SUNPOIN WORKSPACE",
-        Copy: "2017-2018 &copy; SUNPOIN",
-        Items: []
-      }
+      menusrc:"http://localhost:10000/api/UserMgt/GetModulesByUserId?uid=admin"
     };
   },
   computed: {},
@@ -68,23 +64,21 @@ export default {
   created: function() {
     
   },
-  mounted: function() {
-    var that = this;
-    that.$ajax
-      .get("http://localhost:10000/api/UserMgt/GetModulesByUserId?uid=admin")
-      .then(function(response) {
-        if (response.data.Success && !!response.data.Result && response.data.Result.length > 0) {
-          that.menu.Items = response.data.Result[0].Items;
-        }
-        console.log(response.data.Success);
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+  beforeUpdate: function() {
+    console.log("beforeUpdate");
   },
-  beforeDestroy() {
+  updated: function () {
+    console.log("updated");
+},
+  beforeMount: function() {
+    console.log("beforeMount");
+  },
+  mounted: function() {
+    console.log("mounted");
+    
 
-
-  }
+            
+  },
+  beforeDestroy() {}
 };
 </script>
