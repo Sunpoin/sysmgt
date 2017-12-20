@@ -2,7 +2,7 @@
   <div class="layout-main">
     <Row  type="flex" ref="main" >
       <Col :span="8" class="layout-main-buttons">
-        <Button type="ghost" icon="android-add">新增</Button>
+        <Button type="ghost" icon="android-add" @click="test">新增</Button>
         <Button type="ghost" icon="android-remove">删除</Button>
         <Button type="ghost" icon="edit">修改</Button>
         <Poptip placement="bottom">
@@ -143,7 +143,10 @@ export default {
     };
   },
   computed: {
-    test(e) {}
+    test(e) {
+
+      debugger;
+    }
   },
   mounted: function() {
     this.$refs.mainList.style.height = `${this.$refs.main.clientHeight -

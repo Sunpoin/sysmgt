@@ -2,53 +2,7 @@
   <div class="layout-main">
     <Row  type="flex" ref="main" >
       <Col :span="8" class="layout-main-buttons">
-        <Button type="ghost" icon="android-add">新增</Button>
-        <Button type="ghost" icon="android-remove">删除</Button>
-        <Button type="ghost" icon="edit">修改</Button>
-        <Poptip placement="bottom">
-          <Button type="ghost">{{search.advPlaceholder}}</Button>
-          <div class="api" slot="content">
-              <table>
-                  <thead>
-                      <tr>
-                          <th>版本号</th>
-                          <th>更新时间</th>
-                          <th>说明</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <tr>
-                          <td>0.9.5</td>
-                          <td>2016-10-26</td>
-                          <td>新增信息提示组件 <code>Tooltip</code>和<code>Poptip</code></td>
-                      </tr>
-                      <tr>
-                          <td>0.9.4</td>
-                          <td>2016-10-25</td>
-                          <td>新增对话框组件 <code>Modal</code></td>
-                      </tr>
-                      <tr>
-                          <td>0.9.2</td>
-                          <td>2016-09-28</td>
-                          <td>新增选择器组件 <code>Select</code></td>
-                      </tr>
-                  </tbody>
-              </table>
-          </div>
-        </Poptip>
-        <Dropdown>
-          <Button type="ghost">
-              更多操作
-              <Icon type="arrow-down-b"></Icon>
-          </Button>
-          <DropdownMenu slot="list">
-              <DropdownItem>驴打滚</DropdownItem>
-              <DropdownItem>炸酱面</DropdownItem>
-              <DropdownItem disabled>豆汁儿</DropdownItem>
-              <DropdownItem>冰糖葫芦</DropdownItem>
-              <DropdownItem divided>北京烤鸭</DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
+        
       </Col>
       <Col :span="1"></Col>
       <Col :span="7" class="layout-main-search">
@@ -71,6 +25,17 @@ const Default_mainPanelNonMainHeight = 70; //主区域的其它高度
 export default {
   data() {
     return {
+      actions:{
+        g1:[
+          {
+            Actid:1,
+            Code:"Add",
+            Title:"新增",
+            Icon:"android-add"
+          }
+        ],
+        g2:[]
+      },
       columns1: [
         {
           title: "Name",
@@ -143,7 +108,12 @@ export default {
     };
   },
   computed: {
-    test(e) {}
+    
+  },
+  methods:{
+    test:function(cur) {
+      let a = cur;
+    }
   },
   mounted: function() {
     this.$refs.mainList.style.height = `${this.$refs.main.clientHeight -

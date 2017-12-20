@@ -1,5 +1,5 @@
 <style scoped>
-@import "styles/common.css";
+@import "styles/dark/layout.css";
 </style>
 <!-- 在元素上声明 style，是因为受到 ivue-row本身样式的影响，或者有动态处理的需要 ； 在 class 处则无效 -->
 <template>
@@ -16,6 +16,7 @@
     </div>
 </template>
 <script>
+
 const Default_mainPanelPaddingLeft = "240px"; //菜单面板宽度（作为右侧面板的左定位）
 
 export default {
@@ -65,19 +66,12 @@ export default {
     
   },
   beforeUpdate: function() {
-    console.log("beforeUpdate");
   },
   updated: function () {
-    console.log("updated");
 },
   beforeMount: function() {
-    console.log("beforeMount");
   },
   mounted: function() {
-    console.log("mounted");
-    
-
-            
   },
   beforeDestroy() {}
 };

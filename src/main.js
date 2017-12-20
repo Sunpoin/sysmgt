@@ -12,7 +12,10 @@ import "iview/dist/styles/iview.css";
 Vue.use(VueRouter);
 Vue.use(iView);
 Vue.use(SPLib);
-Vue.prototype.$ajax = axios; // 解决无法使用 $ajax 的问题
+
+// 全局注册
+Vue.prototype.$ajax = axios;
+Vue.prototype.$util = Util;
 
 // 路由配置 
 const RouterConfig = {
