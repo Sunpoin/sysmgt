@@ -2,7 +2,7 @@
   <div class="layout-main">
     <Row  type="flex" ref="main" >
       <Col :span="8" class="layout-main-buttons">
-        
+        <cp-buttons :src="actionsUrl"></cp-buttons>
       </Col>
       <Col :span="1"></Col>
       <Col :span="7" class="layout-main-search">
@@ -25,6 +25,7 @@ const Default_mainPanelNonMainHeight = 70; //主区域的其它高度
 export default {
   data() {
     return {
+      actionsUrl:"http://localhost:10000/api/UserMgt/GetActions?mid=3",
       actions:{
         g1:[
           {

@@ -1,14 +1,21 @@
 <style scoped>
+    .scp-buttons{
+        width:100%; 
+        height:100%;
+    }
 
+    .scp-buttons button{
+        margin-right:5px;
+    }
 </style>
 
 <template>
-    <div style="width:100%; height:100%;">
-        <template v-if="$util.isEmpty(actions.g1)">
+    <div class="scp-buttons">
+        <template v-if="!$util.isEmpty(actions.g1)">
             <template v-for="(im,idx) in actions.g1">
-                <Button type="ghost" :icon="!$util.isEmpty(im.Icon)" @click="onClick(im.Code)" :key="idx">{{im.Title}}</Button>
+                <Button type="ghost" :icon="$util.isEmpty(im.Icon) ? '':im.Icon" @click="onClick(im.Code)" :key="idx">{{im.Title}}</Button>
             </template>
-            <template v-if="$util.isEmpty(actions.g2)">
+            <template v-if="!$util.isEmpty(actions.g2)">
                 <Dropdown>
                 <Button type="ghost">
                     {{morelabel}}
@@ -31,7 +38,7 @@ export default {
   props: ["src"],
   data() {
     return {
-        morelabel:"More",
+        morelabel:"更多操作",
       actions: {
         g1: [],
         g2: []
@@ -39,24 +46,14 @@ export default {
     };
   },
   methods: {
-    isArrayEmpty: function(ary) {
-      return !ary || ary.length == 0;
-    },
-    initMenus: function(list, that) {
-      if (that.isArrayEmpty(list) || list[0].Items.length == 0) return;
-
-      that.Items = list[0].Items;
-    },
-    fillActions: function(that) {
+    fillData: function(that) {
       that.$ajax
         .get(this.src)
         .then(function(response) {
-          let list = response.data.Result;
-          if (response.data.Success && !!list && list.length > 0) {
-            that.initMenuActived(list, that);
+          if (response.data.Success) {
+            that.actions = response.data.Result;
             that.$nextTick(function() {
-              that.$refs[that.RefId].updateOpened();
-              that.$refs[that.RefId].updateActiveName();
+
             });
           }
         })
@@ -67,6 +64,9 @@ export default {
     onClick:function(arg){
 
     }
+  },
+  beforeMount: function() {
+    this.fillData(this);
   }
 };
 </script>

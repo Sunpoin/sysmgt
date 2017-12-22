@@ -1,5 +1,6 @@
 import CPMenu from "./cpMenu.vue";
 import CPHeader from "./cpHeader.vue";
+import CPButtons from "./cpButtons.vue";
 
 /** 组件协作器
  * 辅助解析组件的公共方法：
@@ -46,7 +47,8 @@ SPLib.dataModels = {
 /** 组件模板字典集合 */
 SPLib.templates = {
     "cp-menu":CPMenu,
-    "cp-header":CPHeader
+    "cp-header":CPHeader,
+    "cp-buttons":CPButtons
 }
 
 export default SPLib;

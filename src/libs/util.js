@@ -10,7 +10,7 @@ util.test = function (title) {
 
 // 取出空格
 util.trim = function(str){
-    return  str.replace(/^(\s|\u00A0)+/,'').replace(/(\s|\u00A0)+$/,'');  
+    return  !str ? '' : str.replace(/^(\s|\u00A0)+/,'').replace(/(\s|\u00A0)+$/,'');  
 }
 
 // 判断对象是否有效（有效包括：不为空，并且有值），支持数组和字符串；

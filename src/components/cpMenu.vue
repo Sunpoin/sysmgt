@@ -61,9 +61,7 @@ export default {
     obj2String: function(value) {
       return !!value ? value : "";
     },
-    initMenus: function(list, that) {
-      if (that.$util.isEmpty(list) || list[0].Items.length == 0) return;
-
+    initData: function(list, that) {
       // 赋值菜单数据
       that.Items = list[0].Items;
 
@@ -105,13 +103,13 @@ export default {
         }
      */
     },
-    fillMenus: function(that) {
+    fillData: function(that) {
       that.$ajax
         .get(this.src)
         .then(function(response) {
           let list = response.data.Result;
-          if (response.data.Success && !!list && list.length > 0) {
-            that.initMenus(list, that); // 初始化菜单激活项及新数据
+          if (response.data.Success && !that.$util.isEmpty(list) && list[0].Items.length > 0) {
+            that.initData(list, that); // 初始化菜单激活项及新数据
             that.$nextTick(function() {
               that.$refs[that.RefId].updateOpened();
               that.$refs[that.RefId].updateActiveName();
@@ -128,7 +126,7 @@ export default {
   },
   computed: {},
   beforeMount: function() {
-    this.fillMenus(this);
+    this.fillData(this);
   },
   mounted: function() {}
 };
