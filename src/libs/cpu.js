@@ -15,7 +15,6 @@ cpu.isEmpty = function (obj) {
     return !obj || obj.length == 0 || (typeof obj == 'string' && cpu.trim(obj).length == 0);
 };
 
-
 /* ajax 结合服务端 Messager 的操作*/
 // that: vue当前的 this 对象
 // src: 要 get 的 url

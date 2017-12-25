@@ -5,10 +5,10 @@
 <template>
     <div class="layout" >
         <Row class="layout-menu-panel" :style="{'height':'100vh','display':layout.menuPanelDisplay}">
-          <cp-menu :src="menusrc"></cp-menu>
+          <CPMenu :src="menusrc"></CPMenu>
         </Row>
         <Row  type="flex" class="layout-header-panel" :style="{'height':layout.headerPanelHeight,'padding-left':layout.mainPanelPaddingLeft}">
-          <cp-header :header="header" :toggle="toggleClick"></cp-header>
+          <CPHeader :iData="header" v-on:toggle="onToggle"></CPHeader>
         </Row>
         <Row class="layout-main-panel" :style="{'position':'absolute','height':'100vh','padding-left':layout.mainPanelPaddingLeft, 'padding-top':layout.headerPanelHeight}">
           <router-view></router-view>
@@ -34,17 +34,12 @@ export default {
       header: {
         user: {
           id: 50000020,
-          name: "Mark Elliot Zuckerberg"
+          name: "Mark Elliot "
         },
         options: [
           { title: "个人信息", link: "" },
           { title: "系统帮助", link: "" },
           { title: "注销登录", link: "", divided: true }
-        ],
-        breadcrumb: [
-          { title: "门户首页", link: "#" },
-          { title: "用户中心", link: "#" },
-          { title: "模块定义", link: "#" }
         ]
       },
       menusrc:"http://localhost:10000/api/UserMgt/GetModulesByUserId?uid=admin"
@@ -52,7 +47,7 @@ export default {
   },
   computed: {},
   methods: {
-    toggleClick: function() {
+    onToggle: function() {
       if (this.layout.mainPanelPaddingLeft === 0) {
         this.layout.mainPanelPaddingLeft = Default_mainPanelPaddingLeft;
         this.layout.menuPanelDisplay = "block";

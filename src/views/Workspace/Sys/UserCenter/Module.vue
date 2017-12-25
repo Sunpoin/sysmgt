@@ -2,11 +2,11 @@
   <div class="layout-main">
     <Row  type="flex" ref="main" >
       <Col :span="8" class="layout-main-buttons">
-        <cp-buttons :src="actionsUrl" :onclick="test"></cp-buttons>
+        <CPButtons :iData="buttons" v-on:click="onButtonsClick"></CPButtons>
       </Col>
-      <Col :span="1"></Col>
+      <Col :span="1" />
       <Col :span="9" class="layout-main-search">
-        <cp-search :keywords="search.keywords" :placeholder="search.placeholder" :advTitle="search.advPlaceholder" :onsearch="onSearch" :onok="onOk"></cp-search>
+        <CPSearch :iData="search" v-on:search="onSearch"></CPSearch>
       </Col>
       <Col :span="6" class="layout-main-pagging">
         <Page ref="pagging" :current="2" :total="50" style="float:right;" simple></Page>
@@ -23,7 +23,14 @@ const Default_mainPanelNonMainHeight = 70; //主区域的其它高度
 export default {
   data() {
     return {
-      actionsUrl: "http://localhost:10000/api/UserMgt/GetActions?mid=3",
+      buttons:{
+        src: "http://localhost:10000/api/UserMgt/GetActions?mid=3",
+        more:"MORE",
+        actions:{
+          g1:[],
+          g2:[]
+        }
+      },
       columns1: [
         {
           title: "Name",
@@ -91,19 +98,21 @@ export default {
       search: {
         placeholder: "请输入关键字检索",
         keywords: "",
-        advPlaceholder: "高级检索"
+        advTitle: "高级检索"
       }
     };
   },
   computed: {},
   methods: {
-    test: function(cur) {},
-    onSearch:function(type){
+    onButtonsClick: function(ctx) {
+      
+      console.log(ctx.Title);
 
     },
-    onOk:function(){
+    onSearch: function(ctx) {
+      if(ctx.type == 2 || ctx.type == 1)
+        cpu.info(this, ctx.type);
 
-      cpu.info(this, "okkkkk.....");
     }
   },
   mounted: function() {

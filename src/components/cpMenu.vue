@@ -39,7 +39,7 @@
 
 <script>
 export default {
-  name: "cp-menu",
+  name: "CPMenu",
   props: ["src"],
   data() {
     return {

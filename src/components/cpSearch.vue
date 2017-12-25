@@ -10,43 +10,33 @@
 }
 </style>
 
-<template>
+<template v-if="!!iData">
     <div class="scp-search">
-        <Input :v-model="keywords" :placeholder="placeholder">
-          <Button slot="append" icon="ios-search-strong" @click="onSearch(0)"></Button>
-          <Button slot="append"  type="ghost" style="color:#880000;"  @click="onSearch(1)">
-            <span class="scp-search-adv-split">&nbsp;</span>{{advTitle}}</Button>
-        </Input>
-         <Modal :title="advTitle" v-model="advModal" @on-ok="onok" :mask-closable="false">
-        <p>Content of dialog</p>
-        <p>Content of dialog</p>
-        <p>Content of dialog</p>
-    </Modal>
+      <Input :v-model="iData.keywords" :placeholder="iData.placeholder">
+        <Button slot="append" icon="ios-search-strong" v-on:click="onSearch(1)"></Button>
+        <Button slot="append"  type="ghost" style="color:#880000;" v-on:click="onSearch(0)">
+          <span class="scp-search-adv-split">&nbsp;</span>{{iData.advTitle}}</Button>
+      </Input>
+      <Modal :title="iData.advTitle" v-model="advModal" v-on:on-ok="onSearch(2)" :mask-closable="false">
+      </Modal>
     </div>   
 </template>
 
 <script>
 export default {
-  name: "cp-search",
-  props:["keywords","placeholder", "advTitle", "onsearch", "onok"],
+  name: "CPSearch",
+  props: ["iData"],
   data() {
     return {
-      advModal: false
+      advModal: false,
+      which: "CPHeader"
     };
   },
   methods: {
-    onSearch: function(type) {
-      try {
-        if (type == 1) {
-          this.advModal = true;
-        }
-      } catch (msg) {
-        cpu.error(this, msg);
-      }
-    },
-    onOk:function(){
-      if(!!onok)
-        onok();
+    onSearch:function(type){
+      if(type == 0) this.advModal = true;
+
+      this.$emit('search',{type:type});
     }
   },
   beforeMount: function() {}

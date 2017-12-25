@@ -6,13 +6,13 @@ import axios from 'axios'
 
 import CPU from "./libs/cpu";
 import Sys from "./libs/sys";
-import SPLib from "./components/splib.js";
+import CPLib from "./components/cplib.js";
 import App from "./app.vue";
 import "iview/dist/styles/iview.css";
 
 Vue.use(VueRouter);
 Vue.use(iView);
-Vue.use(SPLib);
+Vue.use(CPLib);
 
 // 全局注册
 Vue.prototype.cpu = window.cpu = CPU; // 必须同时提供 Vue.cpu ，供 Vue 内部调用使用; 直接使用 window.cpu 是为了方便编码调用
