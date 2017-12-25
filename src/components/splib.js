@@ -1,6 +1,7 @@
 import CPMenu from "./cpMenu.vue";
 import CPHeader from "./cpHeader.vue";
 import CPButtons from "./cpButtons.vue";
+import CPSearch from "./cpSearch.vue";
 
 /** 组件协作器
  * 辅助解析组件的公共方法：
@@ -48,7 +49,8 @@ SPLib.dataModels = {
 SPLib.templates = {
     "cp-menu":CPMenu,
     "cp-header":CPHeader,
-    "cp-buttons":CPButtons
+    "cp-buttons":CPButtons,
+    "cp-search":CPSearch
 }
 
 export default SPLib;

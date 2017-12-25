@@ -6,10 +6,7 @@
       </Col>
       <Col :span="1"></Col>
       <Col :span="9" class="layout-main-search">
-        <Input v-model="search.keywords" :placeholder="search.placeholder">
-          <Button slot="append" icon="ios-search-strong"></Button>
-          <Button slot="append"  type="ghost" style="color:#880000;"><span style="border-right:1px solid #363E4F;margin-right:15px;">&nbsp;</span>{{search.advPlaceholder}}</Button>
-        </Input>
+        <cp-search :keywords="search.keywords" :placeholder="search.placeholder" :advTitle="search.advPlaceholder" :onsearch="onSearch" :onok="onOk"></cp-search>
       </Col>
       <Col :span="6" class="layout-main-pagging">
         <Page ref="pagging" :current="2" :total="50" style="float:right;" simple></Page>
@@ -27,10 +24,6 @@ export default {
   data() {
     return {
       actionsUrl: "http://localhost:10000/api/UserMgt/GetActions?mid=3",
-      actions: {
-        g1: [],
-        g2: []
-      },
       columns1: [
         {
           title: "Name",
@@ -104,7 +97,14 @@ export default {
   },
   computed: {},
   methods: {
-    test: function(cur) {}
+    test: function(cur) {},
+    onSearch:function(type){
+
+    },
+    onOk:function(){
+
+      cpu.info(this, "okkkkk.....");
+    }
   },
   mounted: function() {
     this.$refs.mainList.style.height = `${this.$refs.main.clientHeight -

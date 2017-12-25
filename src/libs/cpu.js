@@ -4,9 +4,6 @@ let cpu = {
 cpu.title = function (title) {
 
 };
-cpu.test = function (title) {
-    return title;
-};
 
 // 取出空格
 cpu.trim = function (str) {
