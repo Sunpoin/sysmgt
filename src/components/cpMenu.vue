@@ -8,14 +8,14 @@
         <template v-for="(im, idx) in Items">
             <Submenu :name="im.Url" :key="idx">
                 <template slot="title">
-                    <template v-if="!$util.isEmpty(im.Icon)">
+                    <template v-if="!cpu.isEmpty(im.Icon)">
                         <Icon :type="im.Icon"></Icon>
                     </template>
                     {{im.Title}}
                 </template>
-                <template v-if="!$util.isEmpty(im.Items)" >
+                <template v-if="!cpu.isEmpty(im.Items)" >
                     <template v-for="(im1, idx1) in im.Items">
-                       <template v-if="!$util.isEmpty(im1.Items)" >
+                       <template v-if="!cpu.isEmpty(im1.Items)" >
                            <MenuGroup :title="im1.Title" :key="idx1">
                                 <template v-for="(im2, idx2) in im1.Items">
                                     <MenuItem :name="im2.Url" :key="idx2">
@@ -89,36 +89,24 @@ export default {
         }
       }
 
-      if(that.OpenNames.length == 0){
+      if (that.OpenNames.length == 0) {
         that.OpenNames.push(list[0].Items[0].Url);
       }
-
-      /* 采用默认方式 
-        let firstSubMenu = list[0].Items[0];
-        if (!!firstSubMenu.Items && firstSubMenu.Items.length > 0) {
-          let secondSubMenu = firstSubMenu.Items[0];
-          if (!!secondSubMenu.Items && secondSubMenu.Items.length > 0) {
-            that.ActiveName = secondSubMenu.Items[0].Url;
-          }
-        }
-     */
     },
     fillData: function(that) {
-      that.$ajax
-        .get(this.src)
-        .then(function(response) {
-          let list = response.data.Result;
-          if (response.data.Success && !that.$util.isEmpty(list) && list[0].Items.length > 0) {
-            that.initData(list, that); // 初始化菜单激活项及新数据
-            that.$nextTick(function() {
-              that.$refs[that.RefId].updateOpened();
-              that.$refs[that.RefId].updateActiveName();
-            });
-          }
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
+      cpu.httpGet(that, that.src, function(ret) {
+        if (cpu.isEmpty(ret)) {
+          throw "Result is null.";
+        }
+
+        if (ret[0].Items.length > 0) {
+          that.initData(ret, that); // 初始化菜单激活项及新数据
+          that.$nextTick(function() {
+            that.$refs[that.RefId].updateOpened();
+            that.$refs[that.RefId].updateActiveName();
+          });
+        }
+      });
     },
     onSelected: function(name) {
       this.$router.push({ path: name });

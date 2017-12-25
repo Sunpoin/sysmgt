@@ -5,12 +5,13 @@
         <cp-buttons :src="actionsUrl" :onclick="test"></cp-buttons>
       </Col>
       <Col :span="1"></Col>
-      <Col :span="7" class="layout-main-search">
-        <Input :v-model="search.keywords" :placeholder="search.placeholder">
-            <Button slot="append" icon="ios-search"></Button>
+      <Col :span="9" class="layout-main-search">
+        <Input v-model="search.keywords" :placeholder="search.placeholder">
+          <Button slot="append" icon="ios-search-strong"></Button>
+          <Button slot="append"  type="ghost" style="color:#880000;"><span style="border-right:1px solid #363E4F;margin-right:15px;">&nbsp;</span>{{search.advPlaceholder}}</Button>
         </Input>
       </Col>
-      <Col :span="8" class="layout-main-pagging">
+      <Col :span="6" class="layout-main-pagging">
         <Page ref="pagging" :current="2" :total="50" style="float:right;" simple></Page>
       </Col>
     </Row>
@@ -25,10 +26,10 @@ const Default_mainPanelNonMainHeight = 70; //主区域的其它高度
 export default {
   data() {
     return {
-      actionsUrl:"http://localhost:10000/api/UserMgt/GetActions?mid=3",
-      actions:{
-        g1:[],
-        g2:[]
+      actionsUrl: "http://localhost:10000/api/UserMgt/GetActions?mid=3",
+      actions: {
+        g1: [],
+        g2: []
       },
       columns1: [
         {
@@ -101,12 +102,9 @@ export default {
       }
     };
   },
-  computed: {
-    
-  },
-  methods:{
-    test:function(cur) {
-    }
+  computed: {},
+  methods: {
+    test: function(cur) {}
   },
   mounted: function() {
     this.$refs.mainList.style.height = `${this.$refs.main.clientHeight -
