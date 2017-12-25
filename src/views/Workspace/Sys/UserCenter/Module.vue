@@ -2,7 +2,7 @@
   <div class="layout-main">
     <Row  type="flex" ref="main" >
       <Col :span="8" class="layout-main-buttons">
-        <cp-buttons :src="actionsUrl"></cp-buttons>
+        <cp-buttons :src="actionsUrl" :onclick="test"></cp-buttons>
       </Col>
       <Col :span="1"></Col>
       <Col :span="7" class="layout-main-search">
@@ -27,14 +27,7 @@ export default {
     return {
       actionsUrl:"http://localhost:10000/api/UserMgt/GetActions?mid=3",
       actions:{
-        g1:[
-          {
-            Actid:1,
-            Code:"Add",
-            Title:"新增",
-            Icon:"android-add"
-          }
-        ],
+        g1:[],
         g2:[]
       },
       columns1: [
@@ -113,7 +106,6 @@ export default {
   },
   methods:{
     test:function(cur) {
-      let a = cur;
     }
   },
   mounted: function() {
