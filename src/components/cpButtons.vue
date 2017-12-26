@@ -21,8 +21,10 @@
                       <Icon type="arrow-down-b"></Icon>
                   </Button>
                   <DropdownMenu slot="list">
-                      <template v-for="(im,idx) in iData.actions.g2">
-                          <DropdownItem :disabled="im.Disabled" :key="idx" v-on:click="onClick(im)">{{im.Title}}</DropdownItem>
+                      <template v-for="(im1,idx1) in iData.actions.g2">
+                          <DropdownItem :disabled="im1.Disabled" :key="idx1">
+                             <a href="javascript:void(0)" v-on:click="onClick(im1)">{{im1.Title}}</a>
+                          </DropdownItem>
                       </template>
                   </DropdownMenu>
                 </Dropdown> 
@@ -39,6 +41,9 @@ export default {
     return {};
   },
   methods: {
+    test:function(name){
+      console.log(name);
+    },
     onClick: function(ctx) {
       this.$emit("click", ctx);
     },
