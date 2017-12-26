@@ -5,7 +5,7 @@
 <template>
     <div class="layout" >
         <Row class="layout-menu-panel" :style="{'height':'100vh','display':layout.menuPanelDisplay}">
-          <CPMenu :src="menusrc"></CPMenu>
+          <CPMenu :iData="menu"></CPMenu>
         </Row>
         <Row  type="flex" class="layout-header-panel" :style="{'height':layout.headerPanelHeight,'padding-left':layout.mainPanelPaddingLeft}">
           <CPHeader :iData="header" v-on:toggle="onToggle"></CPHeader>
@@ -42,7 +42,11 @@ export default {
           { title: "注销登录", link: "", divided: true }
         ]
       },
-      menusrc:"http://localhost:10000/api/UserMgt/GetModulesByUserId?uid=admin"
+      menu:{
+        src:"http://localhost:10000/api/UserMgt/GetModulesByUserId?uid=admin",
+        Items:null
+        
+      }
     };
   },
   computed: {},

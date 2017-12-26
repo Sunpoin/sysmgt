@@ -5,7 +5,7 @@
 <template>
     <Menu :ref="RefId"  theme="dark" class="scp-menu" :active-name="ActiveName" :open-names="OpenNames"  @on-select="onSelected" accordion>
         <div class="scp-menu-logo">{{Logo}}</div>
-        <template v-for="(im, idx) in Items">
+        <template v-for="(im, idx) in iData.Items">
             <Submenu :name="im.Url" :key="idx">
                 <template slot="title">
                     <template v-if="!cpu.isEmpty(im.Icon)">
@@ -40,7 +40,7 @@
 <script>
 export default {
   name: "CPMenu",
-  props: ["src"],
+  props: ["iData"],
   data() {
     return {
       RefId:
@@ -53,8 +53,7 @@ export default {
       Copy: "2017-2018 &copy; SUNPOIN",
       ActiveName: "",
       Deep: 5, // 最深菜单的深度，在URL上体现出来的以 ‘/’ 为分隔符号的层级，用于根据URL自动激活定位菜单项
-      OpenNames: [],
-      Items: null
+      OpenNames: []
     };
   },
   methods: {
@@ -63,7 +62,7 @@ export default {
     },
     initData: function(list, that) {
       // 赋值菜单数据
-      that.Items = list[0].Items;
+      that.iData.Items = list[0].Items;
 
       // 激活菜单Item选中
       that.ActiveName = that.$router.currentRoute.path;
@@ -94,7 +93,7 @@ export default {
       }
     },
     fillData: function(that) {
-      cpu.httpGet(that, that.src, function(ret) {
+      cpu.httpGet(that, that.iData.src, function(ret) {
         if (cpu.isEmpty(ret)) {
           throw "Result is null.";
         }
