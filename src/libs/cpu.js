@@ -19,27 +19,27 @@ cpu.isEmpty = function (obj) {
 // that: vue当前的 this 对象
 // src: 要 get 的 url
 // tips：当前操作成功的提示（更友好的提示）
-cpu.httpGet = function (that, src,callback) {
+cpu.httpGet = function (that, src, callback) {
     that.$ajax
         .get(src)
         .then(function (response) {
             let ret = response.data;
-            if (ret.Success) {
-                if (!!callback) {
-                    callback(ret.Result);
-                } else {
-                    throw ret.Message;
-                }
+            if (ret.success) {
+                if (!!callback)
+                    callback(ret.result);
+            }
+            else {
+                throw ret.msg;
             }
         })
-        .catch(function (msg) {
-            cpu.error(that, msg);
+        .catch(function (ex) {
+            cpu.error(that, ex + "<br/><b>src:</b> " + src + "");
         });
 }
 
 
 /* 统一全局提示信息 */
-cpu.info = function(that, msg){
+cpu.info = function (that, msg) {
     that.$Message.info({
         content: msg,
         duration: 5,
@@ -47,10 +47,10 @@ cpu.info = function(that, msg){
     });
 }
 
-cpu.error = function(that,msg){
+cpu.error = function (that, msg) {
     that.$Message.error({
         content: msg,
-        duration: 5,
+        duration: 10,
         closable: true
     });
 }

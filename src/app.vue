@@ -44,7 +44,7 @@ export default {
       },
       menu:{
         src:"http://localhost:10000/api/UserMgt/GetModulesByUserId?uid=admin",
-        Items:null
+        items:[]
         
       }
     };

@@ -12,7 +12,7 @@
     <div class="scp-buttons">
         <template v-if="!cpu.isEmpty(iData.actions.g1)">
             <template v-for="(im,idx) in iData.actions.g1">
-                <Button type="ghost" :icon="cpu.isEmpty(im.Icon) ? '':im.Icon" v-on:click="onClick(im)" :key="idx" :disabled="im.Disabled">{{im.Title}}</Button>
+                <Button type="ghost" :icon="cpu.isEmpty(im.icon) ? '':im.icon" v-on:click="onClick(im)" :key="idx" :disabled="im.disabled">{{im.title}}</Button>
             </template>
             <template v-if="!cpu.isEmpty(iData.actions.g2)">
                 <Dropdown>
@@ -22,8 +22,8 @@
                   </Button>
                   <DropdownMenu slot="list">
                       <template v-for="(im1,idx1) in iData.actions.g2">
-                          <DropdownItem :disabled="im1.Disabled" :key="idx1">
-                             <a href="javascript:void(0)" v-on:click="onClick(im1)">{{im1.Title}}</a>
+                          <DropdownItem :disabled="im1.disabled" :key="idx1">
+                             <a href="javascript:void(0)" v-on:click="onClick(im1)">{{im1.title}}</a>
                           </DropdownItem>
                       </template>
                   </DropdownMenu>
@@ -56,9 +56,9 @@ export default {
         }
 
         ret.forEach(element => {
-          if (element.ActionGroup == 0) {
+          if (element.actionGroup == 0) {
             that.iData.actions.g1.push(element);
-          } else if (element.ActionGroup == 1) {
+          } else if (element.actionGroup == 1) {
             that.iData.actions.g2.push(element);
           }
         });

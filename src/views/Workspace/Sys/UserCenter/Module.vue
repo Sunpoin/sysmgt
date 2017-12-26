@@ -106,7 +106,7 @@ export default {
   methods: {
     onButtonsClick: function(ctx) {
       
-      console.log(ctx.Title);
+      console.log(ctx.title);
 
     },
     onSearch: function(ctx) {

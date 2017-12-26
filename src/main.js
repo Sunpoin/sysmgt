@@ -6,7 +6,7 @@ import axios from 'axios'
 
 import CPU from "./libs/cpu";
 import Sys from "./libs/sys";
-import CPLib from "./components/cplib.js";
+import CPLib from "./components/z_cplib";
 import App from "./app.vue";
 import "iview/dist/styles/iview.css";
 

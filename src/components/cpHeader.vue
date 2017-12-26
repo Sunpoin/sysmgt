@@ -32,7 +32,7 @@
 <script>
 export default {
   name: "CPHeader",
-  props: ["iData","iToggle"],
+  props: ["iData"],
   data() {
     return {
       
@@ -41,16 +41,6 @@ export default {
   methods: {
     onToggle:function(){
         this.$emit('toggle');
-    },
-     // 委托执行外部定义的函数
-    delegate: function(name, ctx) {
-      try {
-        if (!!this.$props[name]) {
-          this.$props[name](ctx);
-        }
-      } catch (msg) {
-        cpu.error(this, msg);
-      }
     }
   }
 };
