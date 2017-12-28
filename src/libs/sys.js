@@ -1,14 +1,8 @@
 
 /* 系统级别的扩展 */
-Array.prototype.contain = function (item) {
-        let len = this.length;
-        var i;
-        for(i=0; i<len; i++)
-        {
-            let obj = this[i];
-            if(obj == item)
-                return true;
-        }
-    
-        return false;
+Array.prototype.contains = function (item) {
+    for (i in this) {
+        if (this[i] == item) return true;
     }
+    return false;
+}

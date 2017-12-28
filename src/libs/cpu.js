@@ -24,12 +24,12 @@ cpu.httpGet = function (that, src, callback) {
         .get(src)
         .then(function (response) {
             let ret = response.data;
-            if (ret.success) {
+            if (ret.Success) {
                 if (!!callback)
-                    callback(ret.result);
+                    callback(ret.Result);
             }
             else {
-                throw ret.msg;
+                throw ret.Msg;
             }
         })
         .catch(function (ex) {
@@ -37,6 +37,21 @@ cpu.httpGet = function (that, src, callback) {
         });
 }
 
+cpu.httpPost = function (that, src, data, callback) {
+    that.$ajax.post(src, data, { headers: { 'Content-Type': 'application/json; charset=utf-8' } })
+        .then(function (response) {
+            let ret = response.data;
+            if (ret.Success && !!callback) {
+                callback(ret.Result);
+            }
+            else {
+                throw ret.Msg;
+            }
+        })
+        .catch(function (ex) {
+            cpu.error(that, ex + "<br/><b>src:</b> " + src + "");
+        });
+}
 
 /* 统一全局提示信息 */
 cpu.info = function (that, msg) {

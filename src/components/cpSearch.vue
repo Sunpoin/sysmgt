@@ -15,7 +15,8 @@
       <Input :v-model="iData.keywords" :placeholder="iData.placeholder">
         <Button slot="append" icon="ios-search-strong" v-on:click="onSearch(1)"></Button>
         <Button slot="append"  type="ghost" style="color:#880000;" v-on:click="onSearch(0)">
-          <span class="scp-search-adv-split">&nbsp;</span>{{iData.advTitle}}</Button>
+          <span class="scp-search-adv-split">&nbsp;</span>{{iData.advTitle}}
+          </Button>
       </Input>
       <Modal :title="iData.advTitle" v-model="advModal" v-on:on-ok="onSearch(2)" :mask-closable="false">
       </Modal>

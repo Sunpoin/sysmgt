@@ -6,27 +6,27 @@
     <Menu :ref="refId"  theme="dark" class="scp-menu" :active-name="activeName" :open-names="openNames"  @on-select="onSelected" accordion>
         <div class="scp-menu-logo">{{logo}}</div>
         <template v-for="(im, idx) in iData.items">
-            <Submenu :name="im.url" :key="idx">
+            <Submenu :name="im.Url" :key="idx">
                 <template slot="title">
-                    <template v-if="!cpu.isEmpty(im.icon)">
-                        <Icon :type="im.icon"></Icon>
+                    <template v-if="!cpu.isEmpty(im.Icon)">
+                        <Icon :type="im.Icon"></Icon>
                     </template>
-                    {{im.title}}
+                    {{im.Title}}
                 </template>
-                <template v-if="!cpu.isEmpty(im.items)" >
-                    <template v-for="(im1, idx1) in im.items">
-                       <template v-if="!cpu.isEmpty(im1.items)" >
-                           <MenuGroup :title="im1.title" :key="idx1">
-                                <template v-for="(im2, idx2) in im1.items">
-                                    <MenuItem :name="im2.url" :key="idx2">
-                                       {{im2.title}}
+                <template v-if="!cpu.isEmpty(im.Items)" >
+                    <template v-for="(im1, idx1) in im.Items">
+                       <template v-if="!cpu.isEmpty(im1.Items)" >
+                           <MenuGroup :title="im1.Title" :key="idx1">
+                                <template v-for="(im2, idx2) in im1.Items">
+                                    <MenuItem :name="im2.Url" :key="idx2">
+                                       {{im2.Title}}
                                     </MenuItem>
                                 </template>
                             </MenuGroup>
                        </template>
                        <template v-else>
-                            <MenuItem :name="im1.url" :key="idx1">
-                                {{im1.title}}
+                            <MenuItem :name="im1.Url" :key="idx1">
+                                {{im1.Title}}
                             </MenuItem>
                         </template>
                     </template>
@@ -62,7 +62,7 @@ export default {
     },
     initData: function(list, that) {
       // 赋值菜单数据
-      that.iData.items = list[0].items;
+      that.iData.items = list[0].Items;
 
       // 激活菜单Item选中
       that.activeName = that.$router.currentRoute.path;
@@ -88,7 +88,7 @@ export default {
       }
 
       if (that.openNames.length == 0) {
-        that.openNames.push(list[0].items[0].url);
+        that.openNames.push(list[0].Items[0].Url);
       }
     },
     fillData: function(that) {
@@ -97,7 +97,7 @@ export default {
           throw "Result is null.";
         }
 
-        if (ret[0].items.length > 0) {
+        if (ret[0].Items.length > 0) {
           that.initData(ret, that); // 初始化菜单激活项及新数据
           that.$nextTick(function() {
             that.$refs[that.refId].updateOpened();
